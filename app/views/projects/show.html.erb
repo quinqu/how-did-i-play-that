@@ -1,0 +1,46 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @project.name %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @project.user_id %>
+</p>
+
+<%= link_to 'Edit', edit_project_path(@project) %> |
+<%= link_to 'Back', projects_path %>
+
+
+<hr>
+<h1>Listing songs</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Content</th>
+    <th>Tag</th>
+    <th>Project</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @project.songs.each do |song| %>
+    <tr>
+      <td><%= song.name %></td>
+      <td><%= song.content %></td>
+      <td><%= song.tag %></td>
+      <td><%= song.project %></td>
+      <td><%= link_to 'Show', [song.project, song] %></td>
+      <td><%= link_to 'Edit', edit_project_song_path(song.project, song) %></td>
+      <td><%= link_to 'Destroy', [song.project, song], method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Song', new_project_song_path(@project.id) %>
